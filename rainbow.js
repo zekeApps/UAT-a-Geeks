@@ -11,6 +11,7 @@ board.on("ready", function () {
     isAnode: true
   })
   led.color("#00ff00")
+  console.log("Arduino is Alive")
 
   this.repl.inject({
     led: led

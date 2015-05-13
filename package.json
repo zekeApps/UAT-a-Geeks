@@ -1,0 +1,24 @@
+{
+  "name": "UAT-a-Geeks",
+  "version": "0.0.1",
+  "description": "iOT Concept proof using NodeJS/ioJS nd Arduino",
+  "main": "rainbow.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zekeApps/UAT-a-Geeks.git"
+  },
+  "keywords": [
+    "Arduino",
+    "Johnny-five",
+    "iOT",
+    "UAT"
+  ],
+  "author": "Ezequiel Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zekeApps/UAT-a-Geeks/issues"
+  }
+}

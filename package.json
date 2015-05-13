@@ -20,5 +20,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zekeApps/UAT-a-Geeks/issues"
+  },
+  "dependencies": {
+    "johnny-five": "~0.8.74"
   }
 }

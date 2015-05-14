@@ -2,6 +2,8 @@ const five = require("johnny-five")
 const colorMatrix = require("./colors")
 const twit = require("node-tweet-stream")
 const board = new five.Board()
+var lastColor = "off"
+
 
 board.on("ready", function () {
   var led = new five.Led.RGB({
@@ -12,9 +14,7 @@ board.on("ready", function () {
     },
     isAnode: true
   })
-  led.color(colorMatrix["candy"])
-  console.log("Arduino is Alive")
-
+  led.color(colorMatrix[lastColor])
 
 
   // Twitter OAuth
@@ -26,14 +26,27 @@ board.on("ready", function () {
   })
   tw.track("@zeke_glz")
   tw.track("#UATaGeeks")
-  tw.on('tweet', function (tweet) {
-  console.log('tweet received', tweet)
-  })
+  tw.on("tweet", colorChange)
+  tw.on("error", errorHandler)
 
-  tw.on('error', function (err) {
-  console.log('Oh no, error Occureed with Twitter Stream: ', err)
-  })
 
+  function colorChange(tweet) {
+    // Populates color keys
+    Object.keys(colorMatrix).some(function colorHandler(color) {
+      if (tweet.text.indexOf(color) >= 0) {
+        if (color != lastColor) {
+          lastColor = color;
+          led.color(colorMatrix[color])
+          console.log("Changing to " + color);
+        }
+      }
+    })
+  }
+
+  function errorHandler(err) {
+    console.log("Oh no, error occurred with Twitter stream: ", err)
+  }
+  // REPL implementation
   this.repl.inject({
     led: led
   })

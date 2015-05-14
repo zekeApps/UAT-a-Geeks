@@ -17,9 +17,6 @@ const colorMatrix = {
   yellow: "#e42500",
   orange: "#ff0C00",
   candy: "#ff0103"
-
-  }
+}
 
   module.exports = colorMatrix;
-
-}

@@ -1,6 +1,7 @@
 const five = require("johnny-five")
 const colorMatrix = require("./colors")
 const twit = require("node-tweet-stream")
+var jsonValue = require('json-value')
 const board = new five.Board()
 var lastColor = "off"
 
@@ -37,7 +38,8 @@ board.on("ready", function () {
         if (color != lastColor) {
           lastColor = color;
           led.color(colorMatrix[color])
-          console.log("Changing to " + color);
+          console.log("Changing to: " + color + ", by: " + jsonValue(tweet, "user.name") + "@"
+          + jsonValue(tweet, "user.screen_name") + "\n--> Text: "+ jsonValue(tweet, "text") + "\n\n")
         }
       }
     })

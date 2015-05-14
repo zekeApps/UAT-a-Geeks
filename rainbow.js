@@ -1,4 +1,5 @@
 const five = require("johnny-five")
+const colorMatrix = require("./colors")
 const board = new five.Board()
 
 board.on("ready", function () {
@@ -10,7 +11,7 @@ board.on("ready", function () {
     },
     isAnode: true
   })
-  led.color("#00ff00")
+  led.color(colorMatrix["candy"])
   console.log("Arduino is Alive")
 
   this.repl.inject({

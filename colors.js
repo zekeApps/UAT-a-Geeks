@@ -1,6 +1,7 @@
 // This is the colorMatrix
 const colorMatrix = {
   off: "#000000",
+  soft: "#100010",
   lightred: "#180000",
   lightgreen: "#001800",
   lightblue: "#000018",

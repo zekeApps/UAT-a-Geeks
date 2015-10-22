@@ -1,13 +1,17 @@
+// libs import
 const five = require("johnny-five")
 const colorMatrix = require("./colors")
 const twit = require("node-tweet-stream")
 var jsonValue = require('json-value')
+// enviornment variables init
+require('dotenv').load();
+
 const board = new five.Board()
 var lastColor = "off"
 
 
 board.on("ready", function () {
-  var led = new five.Led.RGB({
+  const led = new five.Led.RGB({
     pins: {
       red:9,
       green: 10,
@@ -16,7 +20,7 @@ board.on("ready", function () {
     isAnode: true
   })
   led.color(colorMatrix[lastColor])
-
+  const l13 = new five.Led(13);
 
   // Twitter OAuth
   tw = new twit({
@@ -24,9 +28,10 @@ board.on("ready", function () {
     consumer_secret: process.env.TWITTER_API_SECRET,
     token: process.env.TWITTER_TOKEN,
     token_secret: process.env.TWITTER_TOKEN_SECRET
-  })
+  });
+
   tw.track("@zeke_glz")
-  tw.track("#UATaGeeks")
+  tw.track("#CBTis135")
   tw.on("tweet", colorChange)
   tw.on("error", errorHandler)
 
@@ -50,6 +55,7 @@ board.on("ready", function () {
   }
   // REPL implementation
   this.repl.inject({
-    led: led
+    led: led,
+    l13: l13
   })
 })
